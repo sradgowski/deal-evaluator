@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+ <head>
+  <meta name="qrichtext" content="0" />
+  <style type="text/css">
+    p, li { 
+       white-space: pre-wrap; 
+    }
+  </style>
+ </head>
+ <body style="font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;">
+  <p align="center" style="margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+   <span style="font-size:24pt; font-weight:600;">How does this application work?</span>
+  </p>
+  <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;">
+  <br/>
+  </p>
+  <p style="margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+   This Brokered Deal Evaluator searches through business-for-sale listings on a set of websites that advertise private equity deals. To produce results, it goes through three main steps:
+  </p>
+  <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+  <br/>
+  </p>
+  <p style="margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+   <span style="font-weight:600;">1. Finding results pages</span>. For sites that use a different URL for every search result (like <span style="font-style:italic;">www.bizbuysell.com</span>), the application first produces the relevant URL for each page of results given the state or set of states you are searching through. For sites that use a single URL for all search results (like <span style="font-style:italic;">www.sunbeltnetwork.com</span>), this is not so simple.
+  </p>
+  <p style="margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+   Instead, for sites like this, the program uses a Python package called <span style="font-weight:600;">Selenium</span>, which opens a phantom browser on your computer and manually enters the search terms (it types &quot;United States&quot; into the country field, clicks submit, clicks &quot;Next Page&quot;, etc.) to pull up the correct listings. In either case, the program will then flip through all pages of results.
+  </p>
+  <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+  <br/>
+  </p>
+  <p style="margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+   <span style="font-weight:600;">2. Scraping information</span>. After the program has access to the results page, it can use another Python package called <span style="font-weight:600;">BeautifulSoup</span>, which accesses a copy of the page's HTML code. This package then sorts through all of the objects on the page by <span style="font-style:italic;">tag</span>, and pulls out the relevant information by categories and compiles a list of results.
+  </p>
+  <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+  <br/>
+  </p>
+  <p style="margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+   <span style="font-weight:600;">3. Scoring entries</span>. After the program has created this list of data, it uses another package called <span style="font-weight:600;">Pandas</span> to organize it into a DataFrame. For each entry, the program calculates a score based on a set of positive and negative keywords—positive keywords in the title, tagline, or description earn the entry points, while negative keywords cause deductions. Finally, the Brokered Deal Evaluator produces a DataFrame with the results sorted by score. This can then be printed to a table in the application window, saved to a database, or compared to previous searches.
+  </p>
+  <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">
+  <br/>
+  </p>
+ </body>
+</html>

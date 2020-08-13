@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="appResources">
+    <file>sunbeltlogo.png</file>
+    <file>mtlogo.png</file>
+    <file>bbslogo.png</file>
+    <file>sidebar.png</file>
+    <file>twlogo.png</file>
+  </qresource>
+</RCC>
